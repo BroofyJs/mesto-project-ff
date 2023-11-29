@@ -9,14 +9,14 @@
 // @todo: Вывести карточки на страницу
 
 
-const placesList = document.querySelector('.places__list');
+const cardsContainer = document.querySelector('.places__list');
 const cardTemplate = document.querySelector('#card-template').content;
 
 function removeCard(element) {
   element.remove();
 }
 
-function addCard(card) {
+function createCard(card, onDelete) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const image = cardElement.querySelector(".card__image");
   const title = cardElement.querySelector(".card__title");
@@ -26,11 +26,11 @@ function addCard(card) {
   image.src = card.link;
   image.alt = card.name;
 
-  removeBtn.addEventListener('click', () => removeCard(cardElement));
+  removeBtn.addEventListener('click', () => onDelete(cardElement));
 
   return cardElement;
 }
 
 initialCards.forEach((card) => {
-  placesList.append(addCard(card))
+  cardsContainer.append(createCard(card, removeCard))
 });
