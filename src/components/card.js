@@ -1,10 +1,8 @@
-import Modal from "./modal.js";
-
 function createCard(
   card,
   cardTemplate,
   onClickDelete,
-  handleLike,
+  onClickLike,
   onClickImage
 ) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -13,8 +11,8 @@ function createCard(
   const removeBtn = cardElement.querySelector(".card__delete-button");
   const likeBtn = cardElement.querySelector(".card__like-button");
 
-  likeBtn.addEventListener("click", function (evt) {
-    handleLike(evt.target);
+  likeBtn.addEventListener("click", function () {
+    onClickLike(likeBtn);
   });
 
   title.textContent = card.name;
