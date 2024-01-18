@@ -10,18 +10,34 @@ function createCard(
   const title = cardElement.querySelector(".card__title");
   const removeBtn = cardElement.querySelector(".card__delete-button");
   const likeBtn = cardElement.querySelector(".card__like-button");
+  const likeAmount = cardElement.querySelector(".card__likes-amount");
+
+  const cardId = card._id;
+
+  cardElement.id = `card-${cardId}`;
+
+  if (card.isLiked) {
+    likeBtn.classList.add("card__like-button_is-active");
+  }
 
   likeBtn.addEventListener("click", function () {
-    onClickLike(likeBtn);
+    onClickLike(likeBtn, card);
+    card.canLike = !card.canLike;
   });
 
   title.textContent = card.name;
   image.src = card.link;
   image.alt = card.name;
+  likeAmount.textContent = card.likes.length;
 
-  removeBtn.addEventListener("click", function () {
-    onClickDelete(cardElement);
-  });
+  if (card.canRemove) {
+    removeBtn.addEventListener("click", function () {
+      onClickDelete(cardElement, cardId);
+    });
+  } else {
+    removeBtn.remove();
+  }
+
   image.addEventListener("click", function () {
     onClickImage(card);
   });
@@ -29,12 +45,5 @@ function createCard(
   return cardElement;
 }
 
-function removeCard(element) {
-  element.remove();
-}
 
-function handleLike(element) {
-  element.classList.toggle("card__like-button_is-active");
-}
-
-export { createCard, removeCard, handleLike };
+export { createCard };

@@ -6,17 +6,42 @@
   border-radius: 50%;
   background-size: cover;
   background-position: center;
+  opacity: 1;
+  -moz-transition: all  ease;
+  -ms-transition: all  ease;
+  -o-transition: all  ease;
+  -webkit-transition: all  ease;
+  transition: all  ease;
+}
+
+.profile__image-wrapper {
   margin: 0 29px 0 0;
+  -moz-transition: all  ease;
+  -ms-transition: all  ease;
+  -o-transition: all  ease;
+  -webkit-transition: all  ease;
+  transition: all  ease;
+}
+
+.profile__image-wrapper:hover {
+  background: url('../../../images/edit-icon.svg') center no-repeat;
+  background-size: 26px 26px;
+  
+}
+
+profile__image:hover,
+.profile__image-wrapper:hover img {
+    opacity: 0.2;
 }
 
 @media screen and (max-width: 740px) {
-  .profile__image {
+  .profile__image-wrapper {
     margin: 0 10px 0 0;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .profile__image {
+  .profile__image-wrapper {
     margin-right: 0;
   }
 }
